@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Тестовое задание</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="node.js" async></script>
+</head>
+<body>
+	<h1>Тестовое задание</h1>
+
+	<form id="myForm">
+        <fieldset>
+    	<legend>Форма обратной связи</legend>
+		<p >
+			<input name="fio" type="text" placeholder="Введите ФИО" value="Иванов Иван Иванович">
+		</p>
+		<p >
+			<input name="email" type="email" placeholder="Введите e-mail" value = "12345@ya.ru">
+		</p>
+		<p>
+			<input name="phone" type="text" placeholder="Введите телефон" value="+7(981)789-45-56">
+		<p>
+			<input onclick="submiting()" id="submitButton" type="submit" value="Отправить">
+		</p>
+		</fieldset>
+	</form>
+
+ 	<div id="resultContainer">
+
+ 	</div>
+
+</body>
+</html>
