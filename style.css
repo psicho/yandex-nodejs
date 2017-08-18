@@ -1,0 +1,6 @@
+#resultContainer, div {
+    display: inline-block;
+    border: 1px solid red;
+    width: 350px;
+    height: 50px;
+}

@@ -4,31 +4,37 @@
     <meta charset="UTF-8">
     <title>Тестовое задание</title>
     <link rel="stylesheet" href="style.css">
-    <script src="node.js" async></script>
+    <script src="index.js" async></script>
 </head>
 <body>
 	<h1>Тестовое задание</h1>
 
-	<form id="myForm">
+	<form action="#" id="myForm">
         <fieldset>
-    	<legend>Форма обратной связи</legend>
-		<p >
-			<input name="fio" type="text" placeholder="Введите ФИО" value="Иванов Иван Иванович">
-		</p>
-		<p >
-			<input name="email" type="email" placeholder="Введите e-mail" value = "12345@ya.ru">
-		</p>
-		<p>
-			<input name="phone" type="text" placeholder="Введите телефон" value="+7(981)789-45-56">
-		<p>
-			<input onclick="submiting()" id="submitButton" type="submit" value="Отправить">
-		</p>
+            <legend>Форма обратной связи</legend>
+            <p >
+                <input onclick="fio ()" name="fio" type="text" placeholder="Введите ФИО" value="Иванов Иван Иванович">
+            </p>
+            <p >
+                <input onclick="fio ()" name="email" type="email" placeholder="Введите e-mail" value = "12345@ya.ru">
+            </p>
+            <p>
+                <input name="phone" type="text" placeholder="Введите телефон" value="+7(981)789-45-56">
+            <p onclick="submiting ()">
+                <input  id="submitButton" type="submit" submit="alerting()" value="Отправить">
+            </p>
+
+            <div id="resultContainer">текст</div>
+
 		</fieldset>
+
 	</form>
 
- 	<div id="resultContainer">
+    <a href="#" onclick="document.getElementById('div_for_insert').innerHTML = 'about_bears'">Медведи</a>
+    <a href="#" onclick="document.getElementById('div_for_insert').innerHTML = 'about_lions'">Львы</a>
+    <a href="#" onclick="document.getElementById('div_for_insert').innerHTML = 'about_cats'">Кошки</a>
+    <div id="div_for_insert">wer</div>
 
- 	</div>
 
 </body>
 </html>
