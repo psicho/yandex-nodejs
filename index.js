@@ -10,6 +10,8 @@ var phone = form.elements.phone;
 var err = 0;
 
 function submiting() {
+	fiof();
+	phonef();
 	div.innerText = fio.value + '\n' + email.value + '\n' + phone.value;
 }
 
@@ -29,10 +31,12 @@ function fiof() {
         	if (p == 2 & i == fio1.length - 1 & w > 0) {
         		slo = slo + 1;
         	}
+//			fio.style.border = '';
+			fio.removeAttribute('class')
         }
 		else {
             err = 1;
-            return div.innerText == 'Ошибка!!!';
+            return fio.setAttribute('class', 'error'); //			fio.style.border = '1px solid red';
         }
     }
     div.innerText = 'пробелов = ' + p + '; слов = ' + slo;
@@ -49,12 +53,6 @@ function fiof() {
 function phonef() {
 	var d = 0, s = 0, i, phone1;
 	phone1 = phone.value;
-	console.log('phone1[0] = + ' + phone1[0]);
-	console.log('phone1[2] = ( ' + phone1[2]);
-	console.log('phone1[6] = ) ' + phone1[6]);
-	console.log('phone1[10] = - ' + phone1[10]);
-	console.log('phone1[13] = - ' + phone1[13]);
-	console.log('phone1.length ' + phone1.length);
 	for (i = 0; i < phone1.length; i++) {
         if (phone1[i].match(/[0-9()+-]/) !== null) {
 			if (phone1[i].match(/[0-9]/) !== null) {
@@ -62,25 +60,30 @@ function phonef() {
 				s = +s + +phone1[i];
 				console.log('d = ' + d + ' s = ' + s);
 				if (s > 30 || d > 11 || phone1[1] != 7) {
-					err = 1;
-					return div.innerText = 'Ошибка!!!'  + ' i1= ' + i;
+					return phone.setAttribute('class', 'error');
 				}
 			}
             if (phone1[i].match(/[()+-]/) !== null) {
 				if (phone1[0] != '+' || phone1[2] != '(' || phone1[6] != ')' || phone1[10] != '-' || phone1[13] != '-') {
-					err = 1;
-					return div.innerText = 'Ошибка!!!' + ' i2= ' + i;
+					return phone.setAttribute('class', 'error');;
 				}
             }
+			phone.removeAttribute('class')
         }
 		else {
-            err = 1;
-            return div.innerText = 'Ошибка!!!' + ' i3= ' + i;
+            return phone.setAttribute('class', 'error');
         }
     }
-    div.innerText = 'Правильный телефон!';
+//    div.innerText = 'Правильный телефон!';
 }
 
-function alerting() {
-    div.innerText = 'ФИО ' + fio.value;
+//function alerting() {
+//	fiof();
+//	phonef();
+//    div.innerText = 'ФИО ' + fio.value;
+//}
+
+function emailf() {
+	var d = 0, s = 0, i, email1;
+	email1 = email.value;
 }
