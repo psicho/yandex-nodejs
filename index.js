@@ -31,7 +31,7 @@ function fiof() {
         	}
         }
 		else {
-//            err = 1;
+            err = 1;
             return div.innerText == 'Ошибка!!!';
         }
     }
@@ -47,31 +47,38 @@ function fiof() {
 //}
 
 function phonef() {
-	var d = 0, s = 0;
+	var d = 0, s = 0, i, phone1;
 	phone1 = phone.value;
+	console.log('phone1[0] = + ' + phone1[0]);
+	console.log('phone1[2] = ( ' + phone1[2]);
+	console.log('phone1[6] = ) ' + phone1[6]);
+	console.log('phone1[10] = - ' + phone1[10]);
+	console.log('phone1[13] = - ' + phone1[13]);
+	console.log('phone1.length ' + phone1.length);
 	for (i = 0; i < phone1.length; i++) {
         if (phone1[i].match(/[0-9()+-]/) !== null) {
-			if (phone1[i]match(/[0-9]/) !== null) {
+			if (phone1[i].match(/[0-9]/) !== null) {
             	d = d + 1;
-				s = s + phone1[i];
+				s = +s + +phone1[i];
+				console.log('d = ' + d + ' s = ' + s);
 				if (s > 30 || d > 11 || phone1[1] != 7) {
 					err = 1;
-					return div.innerText = 'Ошибка!!!';
+					return div.innerText = 'Ошибка!!!'  + ' i1= ' + i;
 				}
 			}
             if (phone1[i].match(/[()+-]/) !== null) {
 				if (phone1[0] != '+' || phone1[2] != '(' || phone1[6] != ')' || phone1[10] != '-' || phone1[13] != '-') {
 					err = 1;
-					return div.innerText = 'Ошибка!!!';
+					return div.innerText = 'Ошибка!!!' + ' i2= ' + i;
 				}
             }
         }
 		else {
-//            err = 1;
-            return div.innerText = 'Ошибка!!!';
+            err = 1;
+            return div.innerText = 'Ошибка!!!' + ' i3= ' + i;
         }
     }
-    div.innerText = 'ФИО ' + fio.value;
+    div.innerText = 'Правильный телефон!';
 }
 
 function alerting() {
