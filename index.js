@@ -33,6 +33,10 @@ function fiof() {
         	}
 //			fio.style.border = '';
 			fio.removeAttribute('class')
+			if (p + slo !== 5) {
+				fio.setAttribute('class', 'error');
+			}
+			else fio.removeAttribute('class')
         }
 		else {
             err = 1;
@@ -42,13 +46,14 @@ function fiof() {
     div.innerText = 'пробелов = ' + p + '; слов = ' + slo;
 }
 
-//function fiof1() {
-//	fio1 = fio.value;
-//	if (fio1.match(/(a-z)+ (a-z)+ (a-z)+]/i) !== null) {
-//		div.innerText = 'Ошибок ФИО нет!'
-//	}
-//	else return div.innerText = 'Найдены ошибки в ФИО!'
-//}
+function fiof1() {
+	var fio1;
+	fio1 = fio.value;
+	if (fio1.match(/\w+ \w+ \w+]/i) !== null) {
+		fio.removeAttribute('class');
+	}
+	else return fio.setAttribute('class', 'error')
+}
 
 function phonef() {
 	var d = 0, s = 0, i, phone1;
@@ -65,7 +70,7 @@ function phonef() {
 			}
             if (phone1[i].match(/[()+-]/) !== null) {
 				if (phone1[0] != '+' || phone1[2] != '(' || phone1[6] != ')' || phone1[10] != '-' || phone1[13] != '-') {
-					return phone.setAttribute('class', 'error');;
+					return phone.setAttribute('class', 'error');
 				}
             }
 			phone.removeAttribute('class')
@@ -86,4 +91,20 @@ function phonef() {
 function emailf() {
 	var d = 0, s = 0, i, email1;
 	email1 = email.value;
+	if (email1.match(/@/) > 1) {
+		return email.setAttribute('class', 'error');
+	}
+	if (email1.match(/^.+[^@]@ya.ru$/) !== null || email1.match(/^.+@yandex.ru$/) !== null || email1.match(/^.+@yandex.ua$/) !== null || email1.match(/^.+@yandex.by$/) !== null || email1.match(/^.+@yandex.kz$/) !== null || email1.match(/^.+@yandex.com$/) !== null) {
+		return email.removeAttribute('class');
+	}
+	else return email.setAttribute('class', 'error');
 }
+
+// Глобальный объект MyForm:
+
+//var MyForm = {
+//	funtion validate() {}
+//	function getData() {}
+//	function setData(Object) {}
+//	function submit() {}
+//}
