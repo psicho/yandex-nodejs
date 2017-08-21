@@ -8,6 +8,7 @@ var fio = form.elements.fio;
 var email = form.elements.email;
 var phone = form.elements.phone;
 var err = 0;
+var namefields = "";
 
 function submiting() {
 	fiof();
@@ -102,9 +103,11 @@ function emailf() {
 
 // Глобальный объект MyForm:
 
-//var MyForm = {
-//	funtion validate() {}
-//	function getData() {}
-//	function setData(Object) {}
-//	function submit() {}
-//}
+var MyForm = {
+	funtion validate() {
+
+	}
+	function getData() {}
+	function setData(Object) {}
+	function submit() {}
+}
