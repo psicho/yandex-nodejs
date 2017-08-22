@@ -11,8 +11,8 @@ var err = 0;
 var namefields = "";
 
 function submiting() {
-	fiof();
-	phonef();
+//	fiof();
+//	phonef();
 	div.innerText = fio.value + '\n' + email.value + '\n' + phone.value;
 }
 
@@ -103,11 +103,17 @@ function emailf() {
 
 // Глобальный объект MyForm:
 
-var MyForm = {
-	funtion validate() {
+//var MyForm = {
+//	funtion validate() {
+//
+//	}
+//	function getData() {}
+//	function setData(Object) {}
+//	function submit() {}
+//}
 
-	}
-	function getData() {}
-	function setData(Object) {}
-	function submit() {}
-}
+$(document).ready(function MyForm() {
+    $('#submitButton').on('click', function () {
+        console.log('OK')
+    })
+})
