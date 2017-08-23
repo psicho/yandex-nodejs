@@ -114,6 +114,9 @@ function emailf() {
 
 $(document).ready(function MyForm() {
     $('#submitButton').on('click', function () {
-        console.log('OK')
+        console.log('OK');
+        fiof();
+        emailf();
+        phonef();
     })
 })

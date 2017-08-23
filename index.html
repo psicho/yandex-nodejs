@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <title>Тестовое задание</title>
     <link rel="stylesheet" href="style.css">
-    <script src="jquery.js" async></script>
-    <script src="index.js" async></script>
+    <script src="jquery.js"></script>
+
 </head>
 <body>
 	<h1>Тестовое задание</h1>
@@ -14,13 +14,13 @@
         <fieldset>
             <legend>Форма отправки данных</legend>
             <p >
-                <input onkeyup="fiof()" name="fio" type="text" placeholder="Введите ФИО" value="Иванов Иван Иванович">
+                <input name="fio" type="text" placeholder="Введите ФИО" value="Иванов Иван Иванович">
             </p>
             <p >
-                <input onkeyup="emailf()" name="email" type="email" placeholder="Введите e-mail" value = "12345@ya.ru">
+                <input name="email" type="email" placeholder="Введите e-mail" value = "12345@ya.ru">
             </p>
             <p>
-                <input onkeyup="phonef()" name="phone" type="text" placeholder="Введите телефон" value="+7(111)111-15-56">
+                <input name="phone" type="text" placeholder="Введите телефон" value="+7(111)111-15-56">
             <p>
                 <input id="submitButton" type="button" submit="#" value="Отправить">
             </p>
@@ -30,6 +30,6 @@
 		</fieldset>
 
 	</form>
-
+<script src="index.js"></script>
 </body>
 </html>
