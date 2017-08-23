@@ -22,13 +22,13 @@ function fiof() {
     var p = 0, w = 0, slo = 0, i, fio1;
     errfio = 0;
     fio1 = fio.value;
-    console.log('fio1.length ' + fio1.length);
+//    console.log('fio1.length ' + fio1.length);
     for (i = 0; i < fio1.length; i++) {
         if (fio1[i].match(/[a-zA-Zа-яА-Я ]/) !== null) {
         	w = w + 1;
         	if (fio1[i] === ' ' & w > 0) {
         		p = p + 1;
-        		console.log('w = ' + w);
+//        		console.log('w = ' + w);
         		w = 0;
         		slo = slo + 1;
         	}
@@ -115,17 +115,22 @@ function emailf() {
 
 // Глобальный объект MyForm:
 
-//var MyForm = {
+//function MyForm()= {
 //	funtion validate() {
-//
+//        console.log('validate()');
 //	}
-//	function getData() {}
-//	function setData(Object) {}
-//	function submit() {}
+//	function getData() {
+//        console.log('getData()');
+//    }
+//	function setData(Object) {
+//        console.log('setData(Object)');
+//    }
+//	function submit() {
+//        console.log('submit()');
+//    }
 //}
 
-$(document).ready(function MyForm() {
-
+$(document).ready(function () {
     $('#submitButton').on('click', function () {
         console.log('OK');
         fiof();
@@ -136,6 +141,20 @@ $(document).ready(function MyForm() {
             phone.removeAttribute('class');
             fio.removeAttribute('class');
             $('#submitButton').hide();
+            $.ajax({
+                url: 'success.json',
+                dataType: 'json',
+                async: false,
+                success: function (data, textStatus) {
+                    $.each(data, function(i, val) {
+                        console.log(data.i + ' ' + val);
+                    })
+                }
+            });
+//            $.ajax({url:"error.json"}).success(function(data){ alert(data); });
         }
+//        else {
+//            $.post('error.json')
+//        }
     })
 })
