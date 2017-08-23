@@ -141,20 +141,37 @@ $(document).ready(function () {
             phone.removeAttribute('class');
             fio.removeAttribute('class');
             $('#submitButton').hide();
-            $.ajax({
-                url: 'success.json',
-                dataType: 'json',
-                async: false,
-                success: function (data, textStatus) {
-                    $.each(data, function(i, val) {
-                        console.log(data.i + ' ' + val);
-                    })
-                }
-            });
-//            $.ajax({url:"error.json"}).success(function(data){ alert(data); });
+
+//            $.ajax({
+//                url: 'success.json',
+//                dataType: 'json',
+//                async: false,
+//                success: function (data, textStatus) {
+//                    $.each(data, function(i, val) {
+//                        console.log(data + ' ' + val);
+//                    })
+//                }
+//            });
+			var i = 0;
+			if (Math.round(Math.random()) % 2 === 0) {
+				i = 2
+				$.getJSON('success.json', {}, function (json) {
+                        console.log(JSON.stringify(json));
+                    });
+			}
+			else {
+				i = 1;
+				$.getJSON('progress.json', {}, function (json) {
+                        console.log(JSON.stringify(json));
+                    });
+			}
+			console.log('i= '+ i);
+
         }
-//        else {
-//            $.post('error.json')
-//        }
+        if (errphone === 1 || erremail === 1 || errfio === 1) {
+            $.getJSON('error.json', {}, function (json) {
+                        console.log('err ' + JSON.stringify(json));
+                    });
+        }
     })
 })
