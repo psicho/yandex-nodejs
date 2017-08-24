@@ -152,24 +152,28 @@ $(document).ready(function () {
 //                    })
 //                }
 //            });
-			var i = 0;
-			if (Math.round(Math.random()) % 2 === 0) {
-				i = 2
-				$.getJSON('success.json', {}, function (json) {
-                        console.log(JSON.stringify(json));
-                        div.setAttribute('class', 'success');
-                        div.innerText = "Success";
-                    });
-			}
-			else {
-				i = 1;
-				$.getJSON('progress.json', {}, function (json) {
-                        console.log(JSON.stringify(json));
-                        div.setAttribute('class', 'progress');
-                        div.innerText = "Progress";
-                    });
-			}
-			console.log('i= '+ i);
+            while (true) {
+                var i = 0;
+                if (Math.round(Math.random()) % 2 === 0) {
+                    i = 2;
+                    $.getJSON('success.json', {}, function (json) {
+                            console.log(JSON.stringify(json));
+                            div.setAttribute('class', 'success');
+                            div.innerText = "Success";
+                        });
+                    break;
+                }
+                else {
+                    i = 1;
+                    $.getJSON('progress.json', {}, function (json) {
+                            console.log(JSON.stringify(json));
+                            div.setAttribute('class', 'progress');
+                            div.innerText = "Progress";
+                        });
+                    setTimeout(3000);
+                }
+                console.log('i= '+ i);
+            }
 
         }
         if (errphone === 1 || erremail === 1 || errfio === 1) {
