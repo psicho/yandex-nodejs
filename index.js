@@ -142,20 +142,12 @@ $(document).ready(function () {
             fio.removeAttribute('class');
             $('#submitButton').hide();
 
-//            $.ajax({
-//                url: 'success.json',
-//                dataType: 'json',
-//                async: false,
-//                success: function (data, textStatus) {
-//                    $.each(data, function(i, val) {
-//                        console.log(data + ' ' + val);
-//                    })
-//                }
-//            });
+
             while (true) {
-                var i = 0;
-                if (Math.round(Math.random()) % 2 === 0) {
-                    i = 2;
+
+                var i = Math.round(Math.random()) % 2;
+                if (i === 0) {
+//					console.log(i + ' success')
                     $.getJSON('success.json', {}, function (json) {
                             console.log(JSON.stringify(json));
                             div.setAttribute('class', 'success');
@@ -163,28 +155,42 @@ $(document).ready(function () {
                         });
                     break;
                 }
-                else {
-                    i = 1;
+                else if (i === 1){
+					console.log(i + ' progress')
                     $.getJSON('progress.json', {}, function (json) {
                             console.log(JSON.stringify(json));
                             div.setAttribute('class', 'progress');
                             div.innerText = "Progress";
                         });
-                    setTimeout(3000);
                 }
-                console.log('i= '+ i);
+				sleeping(3);
             }
 
         }
         if (errphone === 1 || erremail === 1 || errfio === 1) {
+			var errString = "";
             $.getJSON('error.json', {}, function (json) {
                         console.log('err ' + JSON.stringify(json));
                         div.setAttribute('class', 'error');
-                        if (errphone === 1) {div.innerText = phone.value;}
-                        else if (erremail === 1) {div.innerText = email.value;}
-                        else if (errfio === 1) {div.innerText = fio.value;}
-//                        div.innerText = JSON.stringify(json.status);
+						if (errfio === 1) {errString = errString + fio.value + "\n";}
+						if (erremail === 1) {errString = errString + email.value + "\n";}
+                        if (errphone === 1) {errString = errString+ phone.value + "\n";}
+                        div.innerText = errString;
                     });
         }
     })
 })
+
+function sleeping (seconds) {
+	var date;
+	var sleeping;
+
+	console.log('progress... timeout ' + seconds + ' сек...');
+
+	date = new Date();
+	sleeping = new Date();
+	while(Math.abs(sleeping.getSeconds() - date.getSeconds()) < seconds) {
+		sleeping = new Date();
+	}
+
+}
