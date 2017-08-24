@@ -157,12 +157,16 @@ $(document).ready(function () {
 				i = 2
 				$.getJSON('success.json', {}, function (json) {
                         console.log(JSON.stringify(json));
+                        div.setAttribute('class', 'success');
+                        div.innerText = "Success";
                     });
 			}
 			else {
 				i = 1;
 				$.getJSON('progress.json', {}, function (json) {
                         console.log(JSON.stringify(json));
+                        div.setAttribute('class', 'progress');
+                        div.innerText = "Progress";
                     });
 			}
 			console.log('i= '+ i);
@@ -171,6 +175,11 @@ $(document).ready(function () {
         if (errphone === 1 || erremail === 1 || errfio === 1) {
             $.getJSON('error.json', {}, function (json) {
                         console.log('err ' + JSON.stringify(json));
+                        div.setAttribute('class', 'error');
+                        if (errphone === 1) {div.innerText = phone.value;}
+                        else if (erremail === 1) {div.innerText = email.value;}
+                        else if (errfio === 1) {div.innerText = fio.value;}
+//                        div.innerText = JSON.stringify(json.status);
                     });
         }
     })
