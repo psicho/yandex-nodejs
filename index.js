@@ -131,46 +131,50 @@ function emailf() {
 //}
 
 $(document).ready(function () {
+    div = document.getElementById('resultContainer');
+    div.innerText = "Progress";
+    div.setAttribute('class', 'progress');
+    $('.progress').hide();
     $('#submitButton').on('click', function () {
+        setTimeout(function() {valid()},0);
         console.log('OK');
         fiof();
         emailf();
         phonef();
+        div.removeAttribute('style');
+//        $('.progress').show();
         if (errphone === 0 && erremail === 0 && errfio === 0) {
             email.removeAttribute('class');
             phone.removeAttribute('class');
             fio.removeAttribute('class');
             $('#submitButton').hide();
+            $('.progress').show();
 
 
-            while (true) {
-
-                var i = Math.round(Math.random()) % 2;
-                if (i === 0) {
-//					console.log(i + ' success')
-                    $.getJSON('success.json', {}, function (json) {
-                            console.log(JSON.stringify(json));
-                            div.setAttribute('class', 'success');
-                            div.innerText = "Success";
-                        });
-                    break;
-                }
-                else if (i === 1){
-					console.log(i + ' progress')
-                    $.getJSON('progress.json', {}, function (json) {
-                            console.log(JSON.stringify(json));
-                            div.setAttribute('class', 'progress');
-                            div.innerText = "Progress";
-                        });
-                }
-				sleeping(3);
+            var i = Math.round(Math.random()) % 2;
+            if (i === 0) {
+                $.getJSON('success.json', {}, function (json) {
+                        console.log(JSON.stringify(json));
+                        div.setAttribute('class', 'success');
+                        div.innerText = "Success";
+                    });
+                return;
             }
+            else if (i === 1){
+                $.getJSON('progress.json', {}, function (json) {
+                        console.log(JSON.stringify(json));
+                        window.div.setAttribute('class', 'progress');
+                        window.div.innerText = "Progress";
+                        sleeping(3)
+                    });
+            }
+
 
         }
         if (errphone === 1 || erremail === 1 || errfio === 1) {
 			var errString = "";
             $.getJSON('error.json', {}, function (json) {
-                        console.log('err ' + JSON.stringify(json));
+//                        console.log('err ' + JSON.stringify(json));
                         div.setAttribute('class', 'error');
 						if (errfio === 1) {errString = errString + fio.value + "\n";}
 						if (erremail === 1) {errString = errString + email.value + "\n";}
@@ -181,16 +185,45 @@ $(document).ready(function () {
     })
 })
 
-function sleeping (seconds) {
+function sleeping(seconds) {
 	var date;
 	var sleeping;
-
 	console.log('progress... timeout ' + seconds + ' сек...');
-
 	date = new Date();
 	sleeping = new Date();
 	while(Math.abs(sleeping.getSeconds() - date.getSeconds()) < seconds) {
 		sleeping = new Date();
 	}
 
+}
+
+
+function valid() {
+    if (div.getAttribute('class') === 'progress') {
+        console.log('div.getAttribute("class") ' + div.getAttribute('class'))
+        while (true) {
+            if (div.getAttribute('class') === 'success') {
+                return;
+            }
+            var i = Math.round(Math.random()) % 2;
+            if (i === 0) {
+                $.getJSON('success.json', {}, function (json) {
+                    console.log(JSON.stringify(json));
+                    div.setAttribute('class', 'success');
+                    div.innerText = "Success";
+                });
+                return;
+            }
+            else if (i === 1){
+                var stat = "Progress";
+//                console.log(i + ' progress')
+                $.getJSON('progress.json', {}, function (json) {
+                    console.log(JSON.stringify(json));
+                    div.setAttribute('class', 'progress');
+                    div.innerText = "Progress";
+                });
+                sleeping(3);
+            }
+        }
+    }
 }
