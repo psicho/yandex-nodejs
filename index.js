@@ -11,6 +11,7 @@ var errfio = 0;
 var errphone = 0;
 var erremail = 0;
 var namefields = "";
+var contin = 0;
 
 function submiting() {
 //	fiof();
@@ -137,7 +138,7 @@ $(document).ready(function () {
     $('.progress').hide();
     $('#submitButton').on('click', function () {
         setTimeout(function() {valid()},0);
-        console.log('OK');
+//        console.log('OK');
         fiof();
         emailf();
         phonef();
@@ -161,11 +162,12 @@ $(document).ready(function () {
                 return;
             }
             else if (i === 1){
+				contin = 1;
                 $.getJSON('progress.json', {}, function (json) {
                         console.log(JSON.stringify(json));
                         window.div.setAttribute('class', 'progress');
                         window.div.innerText = "Progress";
-                        sleeping(3)
+//                        sleeping(3)
                     });
             }
 
@@ -194,18 +196,21 @@ function sleeping(seconds) {
 	while(Math.abs(sleeping.getSeconds() - date.getSeconds()) < seconds) {
 		sleeping = new Date();
 	}
-
 }
 
 
 function valid() {
-    if (div.getAttribute('class') === 'progress') {
+    if (contin == 1) {
         console.log('div.getAttribute("class") ' + div.getAttribute('class'))
+
         while (true) {
             if (div.getAttribute('class') === 'success') {
                 return;
             }
+			sleeping(3);
+
             var i = Math.round(Math.random()) % 2;
+
             if (i === 0) {
                 $.getJSON('success.json', {}, function (json) {
                     console.log(JSON.stringify(json));
@@ -222,7 +227,7 @@ function valid() {
                     div.setAttribute('class', 'progress');
                     div.innerText = "Progress";
                 });
-                sleeping(3);
+//                sleeping(3);
             }
         }
     }
