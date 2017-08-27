@@ -114,36 +114,20 @@ function emailf() {
     }
 }
 
-// Глобальный объект MyForm:
-
-//function MyForm()= {
-//	funtion validate() {
-//        console.log('validate()');
-//	}
-//	function getData() {
-//        console.log('getData()');
-//    }
-//	function setData(Object) {
-//        console.log('setData(Object)');
-//    }
-//	function submit() {
-//        console.log('submit()');
-//    }
-//}
-
 $(document).ready(function () {
     div = document.getElementById('resultContainer');
     div.innerText = "Progress";
     div.setAttribute('class', 'progress');
     $('.progress').hide();
     $('#submitButton').on('click', function () {
-        setTimeout(function() {valid()},0);
+		var errString = "";
+        setTimeout(function() {progr()},0);
 //        console.log('OK');
         fiof();
         emailf();
         phonef();
         div.removeAttribute('style');
-//        $('.progress').show();
+        $('.progress').show();
         if (errphone === 0 && erremail === 0 && errfio === 0) {
             email.removeAttribute('class');
             phone.removeAttribute('class');
@@ -174,7 +158,7 @@ $(document).ready(function () {
 
         }
         if (errphone === 1 || erremail === 1 || errfio === 1) {
-			var errString = "";
+//			var errString = "";
             $.getJSON('error.json', {}, function (json) {
 //                        console.log('err ' + JSON.stringify(json));
                         div.setAttribute('class', 'error');
@@ -198,6 +182,11 @@ function sleeping(seconds) {
 	}
 }
 
+function progr() {
+	window.div.setAttribute('class', 'progress');
+    window.div.innerText = "Progress";
+	setTimeout(function() {valid()},0);
+}
 
 function valid() {
     if (contin == 1) {
@@ -232,3 +221,38 @@ function valid() {
         }
     }
 }
+
+
+// Глобальный объект MyForm:
+
+function MyForm() {
+		function validate() {
+			fiof();
+			emailf();
+			phonef();
+			var errString = "";
+			if (errfio === 1) {errString = errString + 'ФИО' + "\n";}
+			if (erremail === 1) {errString = errString + 'почта' + "\n";}
+			if (errphone === 1) {errString = errString+ 'телефон' + "\n";}
+			console.log(errString);
+			return errString;
+		}
+};
+
+//MyForm.validate()
+
+//MyForm.getData = 'getData() eee';
+
+
+//MyForm.setData(Object) = 'setData(Object)';
+
+//MyForm.submit = 'submit() eee';
+
+var dwer = MyForm.validate
+console.log(dwer)
+
+
+
+//console.log('MyForm.validate = ' + MyForm.validate);
+//console.log('MyForm.getData = ' + MyForm.getData);
+//console.log('MyForm.submit = ' + MyForm.submit);
