@@ -138,19 +138,21 @@ $(document).ready(function () {
 
             var i = Math.round(Math.random()) % 2;
             if (i === 0) {
+                div.setAttribute('class', 'success');
+                div.innerText = "Success";
                 $.getJSON('success.json', {}, function (json) {
-                        console.log(JSON.stringify(json));
-                        div.setAttribute('class', 'success');
-                        div.innerText = "Success";
+                    div.setAttribute('class', 'success');
+                    div.innerText = "Success";
+                    console.log(JSON.stringify(json));
                     });
                 return;
             }
             else if (i === 1){
+                div.setAttribute('class', 'progress');
+                div.innerText = "Progress";
 				contin = 1;
                 $.getJSON('progress.json', {}, function (json) {
                         console.log(JSON.stringify(json));
-                        window.div.setAttribute('class', 'progress');
-                        window.div.innerText = "Progress";
 //                        sleeping(3)
                     });
             }
@@ -183,17 +185,16 @@ function sleeping(seconds) {
 }
 
 function progr() {
-	window.div.setAttribute('class', 'progress');
-    window.div.innerText = "Progress";
+	div.setAttribute('class', 'progress');
+    div.innerText = "Progress";
 	setTimeout(function() {valid()},0);
 }
 
 function valid() {
     if (contin == 1) {
-        console.log('div.getAttribute("class") ' + div.getAttribute('class'))
-
         while (true) {
             if (div.getAttribute('class') === 'success') {
+                div.innerText = "Success";
                 return;
             }
 			sleeping(3);
@@ -210,13 +211,11 @@ function valid() {
             }
             else if (i === 1){
                 var stat = "Progress";
-//                console.log(i + ' progress')
                 $.getJSON('progress.json', {}, function (json) {
                     console.log(JSON.stringify(json));
                     div.setAttribute('class', 'progress');
                     div.innerText = "Progress";
                 });
-//                sleeping(3);
             }
         }
     }
@@ -225,34 +224,25 @@ function valid() {
 
 // Глобальный объект MyForm:
 
-function MyForm() {
-		function validate() {
-			fiof();
-			emailf();
-			phonef();
-			var errString = "";
-			if (errfio === 1) {errString = errString + 'ФИО' + "\n";}
-			if (erremail === 1) {errString = errString + 'почта' + "\n";}
-			if (errphone === 1) {errString = errString+ 'телефон' + "\n";}
-			console.log(errString);
-			return errString;
-		}
-};
+var MyForm = {};
 
-//MyForm.validate()
+MyForm.validate = function () {
+    fiof();
+    emailf();
+    phonef();
+    var isValid = true;
+    var errorFields = [];
+    var errString = "";
+//    var val = {};
+    if (errphone === 0 && erremail === 0 && errfio === 0) {
+        isValid = true;
+    } else isValid = false;
+    if (errfio === 1) {errorFields.push('ФИО');}
+    if (erremail === 1) {errorFields.push('Почта');}
+    if (errphone === 1) {errorFields.push('Телефон');}
+    console.log(errorFields);
+    var val = {'isValid': isValid, 'errorField': errorFields}
+    return val;
+}
 
-//MyForm.getData = 'getData() eee';
-
-
-//MyForm.setData(Object) = 'setData(Object)';
-
-//MyForm.submit = 'submit() eee';
-
-var dwer = MyForm.validate
-console.log(dwer)
-
-
-
-//console.log('MyForm.validate = ' + MyForm.validate);
-//console.log('MyForm.getData = ' + MyForm.getData);
-//console.log('MyForm.submit = ' + MyForm.submit);
+console.log(MyForm.validate())
