@@ -13,30 +13,21 @@ var erremail = 0;
 var namefields = "";
 var contin = 0;
 
-function submiting() {
-//	fiof();
-//	phonef();
-	div.innerText = fio.value + '\n' + email.value + '\n' + phone.value;
-}
-
 function fiof() {
     var p = 0, w = 0, slo = 0, i, fio1;
     errfio = 0;
     fio1 = fio.value;
-//    console.log('fio1.length ' + fio1.length);
     for (i = 0; i < fio1.length; i++) {
         if (fio1[i].match(/[a-zA-Zа-яА-Я ]/) !== null) {
         	w = w + 1;
         	if (fio1[i] === ' ' & w > 0) {
         		p = p + 1;
-//        		console.log('w = ' + w);
         		w = 0;
         		slo = slo + 1;
         	}
         	if (p == 2 & i == fio1.length - 1 & w > 0) {
         		slo = slo + 1;
         	}
-//			fio.style.border = '';
 			fio.removeAttribute('class')
 			if (p + slo !== 5) {
 				fio.setAttribute('class', 'error');
@@ -56,7 +47,6 @@ function fiof() {
             errfio = 1;
             fio.setAttribute('class', 'error');
         }
-//    div.innerText = 'пробелов = ' + p + '; слов = ' + slo;
 }
 
 
@@ -88,14 +78,8 @@ function phonef() {
             return phone.setAttribute('class', 'error');
         }
     }
-//    div.innerText = 'Правильный телефон!';
 }
 
-//function alerting() {
-//	fiof();
-//	phonef();
-//    div.innerText = 'ФИО ' + fio.value;
-//}
 
 function emailf() {
 	var d = 0, s = 0, i, email1;
@@ -114,61 +98,6 @@ function emailf() {
     }
 }
 
-//$(document).ready(function () {
-//    div = document.getElementById('resultContainer');
-//    div.innerText = "Progress";
-//    div.setAttribute('class', 'progress');
-//    $('.progress').hide();
-//    $('#submitButton').on('click', function () {
-//		var errString = "";
-//        setTimeout(function() {progr()},0);
-//        fiof();
-//        emailf();
-//        phonef();
-//        div.removeAttribute('style');
-//        $('.progress').show();
-//        if (errphone === 0 && erremail === 0 && errfio === 0) {
-//            email.removeAttribute('class');
-//            phone.removeAttribute('class');
-//            fio.removeAttribute('class');
-//            $('#submitButton').hide();
-//            $('.progress').show();
-//
-//
-//            var i = Math.round(Math.random()) % 2;
-//            if (i === 0) {
-//                div.setAttribute('class', 'success');
-//                div.innerText = "Success";
-//                $.getJSON('success.json', {}, function (json) {
-//                    div.setAttribute('class', 'success');
-//                    div.innerText = "Success";
-//                    console.log(JSON.stringify(json));
-//                    });
-//                return;
-//            }
-//            else if (i === 1){
-//                div.setAttribute('class', 'progress');
-//                div.innerText = "Progress";
-//				contin = 1;
-//                $.getJSON('progress.json', {}, function (json) {
-//                        console.log(JSON.stringify(json));
-//                    });
-//            }
-//
-//
-//        }
-//        if (errphone === 1 || erremail === 1 || errfio === 1) {
-//            $.getJSON('error.json', {}, function (json) {
-//                        console.log('err ' + JSON.stringify(json));
-//                        div.setAttribute('class', 'error');
-//						if (errfio === 1) {errString = errString + fio.value + "\n";}
-//						if (erremail === 1) {errString = errString + email.value + "\n";}
-//                        if (errphone === 1) {errString = errString+ phone.value + "\n";}
-//                        div.innerText = errString;
-//                    });
-//        }
-//    })
-//})
 
 function sleeping(seconds) {
 	var date;
@@ -300,16 +229,14 @@ MyForm.submit = function () {
             contin = 1;
             $.getJSON('progress.json', {}, function (json) {
                     console.log(JSON.stringify(json));
-//                        sleeping(3)
                 });
         }
 
 
     }
     if (errphone === 1 || erremail === 1 || errfio === 1) {
-//			var errString = "";
         $.getJSON('error.json', {}, function (json) {
-//                        console.log('err ' + JSON.stringify(json));
+                    console.log('err ' + JSON.stringify(json));
                     div.setAttribute('class', 'error');
                     if (errfio === 1) {errString = errString + fio.value + "\n";}
                     if (erremail === 1) {errString = errString + email.value + "\n";}
