@@ -11,8 +11,8 @@
 	<h1>Тестовое задание</h1>
 
 	<form action="#" id="myForm">
-        <fieldset>
-            <legend>Форма отправки данных</legend>
+<!--        <fieldset>-->
+<!--            <legend>Форма отправки данных</legend>-->
             <p >
                 <input name="fio" type="text" placeholder="Введите ФИО" value="Иванов Иван Иванович">
             </p>
@@ -22,12 +22,12 @@
             <p>
                 <input name="phone" type="text" placeholder="Введите телефон" value="+7(111)111-15-56">
             <p>
-                <input id="submitButton" type="button" submit="#" value="Отправить">
+                <input onclick = "MyForm.submit()" id="submitButton" type="button" submit="#" value="Отправить">
             </p>
 
-            <div id="resultContainer">текст</div>
+            <div id="resultContainer"></div>
 
-		</fieldset>
+<!--		</fieldset>-->
 
 	</form>
 <script src="index.js"></script>
